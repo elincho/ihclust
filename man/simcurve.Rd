@@ -1,0 +1,37 @@
+\name{simcurve}
+\alias{simcurve}
+
+\title{
+function to simulate curves using a linear combination of sine and cosine functions.
+}
+
+\description{
+This function generates two kinds of datasets. 1. Randomly generates curves with change/no change. 2. Generates true curves assumed from fixed coeffecients with some random noise.
+}
+
+\usage{
+simcurve(numareas,p,type,normerr)
+}
+
+\arguments{
+  \item{numareas}{number of areas to generate}
+  \item{p}{proportion of the areas that have significant change}
+  \item{type}{type of curves generated}
+  \item{normerr}{standard deviation of the Normal distribution (with mean zero) of which the coefficients are generated}
+}
+
+\details{
+If type = "random", the function generates curves with change/no change. If type = "fixed", the function generates true curves assumed from fixed coefficients with some random noise.
+
+If numareas is not specified, it is assumed as a vector of c(300,300,300).
+If normerr is not specified, it is assumed as a value of 0.01. It is ignored when type= "fixed".
+}
+
+\value{
+  \item{data}{simulated data}
+  \item{parameters}{parameters used to generate the data}
+}
+
+\examples{
+simulated_data <- simcurve(numareas=c(300,300,300),p=.01,type="random", normerr=.01)
+}

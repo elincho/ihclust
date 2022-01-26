@@ -34,7 +34,7 @@ simcurve <- function(numareas=c(300,300,300),p,type,normerr=.01){
     # Just assigning true coefficients to each area
     coefMat <- matrix(rep(NA,sumnum*3),ncol=3)
     for(i in 1:numareas[1]){coefMat[i,] <- cluster1}
-    for(i in (numareas[1]+1):numareas[1]+numareas[2]){coefMat[i,] <- cluster2}
+    for(i in (numareas[1]+1):(numareas[1]+numareas[2])){coefMat[i,] <- cluster2}
     for(i in (numareas[1]+numareas[2]+1):sumnum){coefMat[i,] <- cluster3}
   }
 

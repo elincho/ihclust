@@ -52,10 +52,9 @@ Output from the function is a list of three items:
 %%}
 \examples{
 library(IHC1)
-simulated_data <- simcurve(numareas=c(300,300,300),p=0.1,type="fixed", normerr=0.1)
+simulated_data <- simcurve(numareas=c(300,300,300),p=0.01,type="fixed", normerr=0.1)
 data = as.matrix(simulated_data[[1]])
 IHC_cluster(data, smooth = TRUE, cor_criteria = 0.75, max_iteration = 100, verbose = TRUE)
-
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory (show via RShowDoc("KEYWORDS")):

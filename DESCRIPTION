@@ -2,9 +2,12 @@ Package: IHC1
 Type: Package
 Title: Iterative Hierarchical Clustering (IHC)
 Version: 0.1.0
-Author: Jaejoon Song, Yuting Xu, Elin Cho
-Maintainer: Elin Cho <elin.cho@fda.hhs.gov>
-Description: Includes three functions, 1. a function to simulate dispensing data, 2. a function to plot the simulated datasets, and 3. a function to identify inhomogeneous clusters using iterative hierarchical clustering (IHC) method. 
+Author: Elin Cho, Jaejoon Song, Yuting Xu
+Maintainer: Elin Cho <elincho524@gmail.com>
+Description: Includes three functions, 
+1. a function to simulate dispensing data, 
+2. a function to plot the simulated datasets, and 
+3. a function to identify inhomogeneous clusters using iterative hierarchical clustering (IHC) method. 
 License: GNU General Public License (>=3)
 Encoding: UTF-8
 LazyData: true

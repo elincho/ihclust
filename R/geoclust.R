@@ -12,7 +12,7 @@
 # library(splines)
 
 
-IHC_cluster <- function(data, smooth = TRUE, cor_criteria = 0.75, max_iteration = 100, verbose = TRUE){
+geoclust <- function(data, smooth = TRUE, cor_criteria = 0.75, max_iteration = 100, verbose = TRUE){
   time <- seq(1,ncol(data),1)
   pred.data <- matrix(rep(NA,nrow(data)*ncol(data)),ncol=ncol(data))
 

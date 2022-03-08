@@ -1,5 +1,5 @@
-\name{IHC_cluster}
-\alias{IHC_cluster}
+\name{geoclust}
+\alias{geoclust}
 
 \title{
 Iterative hierarchical clustering (IHC)
@@ -35,9 +35,9 @@ Output from the function is a list of three items:
   \item{Num_Iterations}{total number of iterations.}
   \item{Unique_Clusters_in_Iteration}{unique clusters in each iteration.}
 }
-%%\references{
-%% ~put references to the literature/web site here ~
-%%}
+\references{
+To be added later!!!
+}
 %%\author{
 %%  ~~who you are~~
 %%}
@@ -54,7 +54,7 @@ Output from the function is a list of three items:
 library(IHC1)
 simulated_data <- simcurve(numareas=c(300,300,300),p=0.01,type="fixed", normerr=0.1)
 data = as.matrix(simulated_data[[1]])
-IHC_cluster(data, smooth = TRUE, cor_criteria = 0.75, max_iteration = 100, verbose = TRUE)
+geoclust(data, smooth = TRUE, cor_criteria = 0.75, max_iteration = 100, verbose = TRUE)
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory (show via RShowDoc("KEYWORDS")):

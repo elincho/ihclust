@@ -1,4 +1,4 @@
-Package: IHC1
+Package: ihclust
 Type: Package
 Title: Iterative Hierarchical Clustering (IHC)
 Version: 0.1.0
@@ -12,4 +12,4 @@ License: GNU General Public License (>=3)
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.1.2
-Imports: factoextra, splines, ggplot2
+Imports: factoextra, splines, ggplot2, foreach, doParallel

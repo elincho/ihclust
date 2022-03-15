@@ -1,16 +1,9 @@
 #' @export
-#' @importFrom("stats", "aggregate", "as.dist", "cor", "cutree", "hclust", "lm", "predict")
-#' @importFrom(factoextra, fviz_nbclust, hcut)
+#' @importFrom("stats","aggregate","as.dist","cor","cutree","hclust","lm","predict")
+#' @importFrom(factoextra,fviz_nbclust,hcut)
 #' @importFrom(splines,bs)
-#' @importFrom(IHC1,simcurve)
+#' @importFrom(ihclust,simcurve)
 #' @importFrom(ggplot2,labs)
-
-# library(dplyr)
-# library(ggplot2)
-# library(gridExtra)
-# library(factoextra)
-# library(splines)
-
 
 geoclust <- function(data, smooth = TRUE, cor_criteria = 0.75, max_iteration = 100, verbose = TRUE){
   time <- seq(1,ncol(data),1)

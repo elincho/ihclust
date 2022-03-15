@@ -1,7 +1,20 @@
-#' @importFrom(splines,bs)
-#' @importFrom(foreach,foreach)
-#' @importFrom(doParallel,makeCluster,registerDoParallel,clusterCall)
+#usethis::use_package(splines)
+#usethis::use_package(foreach)
+#usethis::use_package(doParallel)
+#usethis::use_package(parallel)
 
+#' testchange
+#'
+#' @param data
+#' @param time
+#' @param perm
+#' @param nperm
+#' @param numclust
+#'
+#' @return
+#' @export
+#'
+#' @examples
 testchange <- function(data,time,perm=FALSE,nperm=100,numclust=64){
 
   results <- list()
@@ -86,31 +99,31 @@ testchange <- function(data,time,perm=FALSE,nperm=100,numclust=64){
 ##
 ##
 
-opioid_data <- read.csv("/Users/elincho/Desktop/Elin Cho/Research/FDA/data/CDC/DispenseRates_counties.csv")
+#opioid_data <- read.csv("/Users/elincho/Desktop/Elin Cho/Research/FDA/data/CDC/DispenseRates_counties.csv")
 
 # View(opioid_data)
 # dim(opioid_data)
 #  View(opioid_data[,4:18])
 
-opioid_data_noNA <- opioid_data[complete.cases(opioid_data), ]
+#opioid_data_noNA <- opioid_data[complete.cases(opioid_data), ]
 # dim(opioid_data_noNA)
 
 
-opioid_data_NA <- opioid_data[!complete.cases(opioid_data), ]
+#opioid_data_NA <- opioid_data[!complete.cases(opioid_data), ]
 # View(opioid_data_NA)
 
 
-mydata <- as.matrix(opioid_data_noNA[,4:18])
+#mydata <- as.matrix(opioid_data_noNA[,4:18])
 #  View(opioid_data_subset)
 #  dim(opioid_data_subset)
 # View(data)
 
 
-testchange_results <- testchange(data=mydata,perm=FALSE,nperm,time=seq(1,15,1))
+#testchange_results <- testchange(data=mydata,perm=FALSE,nperm,time=seq(1,15,1))
 # names(testchange_results)
 # View(testchange_results$obs.F)
 
-testchange_results <- testchange(data=mydata,perm=TRUE,nperm=10,time=seq(1,15,1))
+#testchange_results <- testchange(data=mydata,perm=TRUE,nperm=10,time=seq(1,15,1))
 # ideally, would need about 10,000 permutations
 # names(testchange_results)
 # View(testchange_results$obs.F)

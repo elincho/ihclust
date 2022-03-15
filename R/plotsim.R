@@ -1,3 +1,11 @@
+#' plotsim
+#'
+#' @param curve
+#'
+#' @return
+#' @export
+#'
+#' @examples
 plotsim <- function(curve){
   if (curve$parameters[3] == "random"){
     mysimdata <- curve$data

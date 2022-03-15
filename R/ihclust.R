@@ -1,11 +1,20 @@
-#' @export
-#' @importFrom("stats","aggregate","as.dist","cor","cutree","hclust","lm","predict")
-#' @importFrom(factoextra,fviz_nbclust,hcut)
-#' @importFrom(splines,bs)
-#' @importFrom(ihclust,simcurve)
-#' @importFrom(ggplot2,labs)
+#usethis::use_package(factoextra)
+#usethis::use_package(splines)
+#usethis::use_package(ggplot2)
 
-geoclust <- function(data, smooth = TRUE, cor_criteria = 0.75, max_iteration = 100, verbose = TRUE){
+#' ihclust
+#'
+#' @param data
+#' @param smooth
+#' @param cor_criteria
+#' @param max_iteration
+#' @param verbose
+#'
+#' @return
+#' @export
+#'
+#' @examples
+ihclust <- function(data, smooth = TRUE, cor_criteria = 0.75, max_iteration = 100, verbose = TRUE){
   time <- seq(1,ncol(data),1)
   pred.data <- matrix(rep(NA,nrow(data)*ncol(data)),ncol=ncol(data))
 

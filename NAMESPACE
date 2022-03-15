@@ -1,5 +1,0 @@
-exportPattern("^[[:alpha:]]+")
-importFrom("stats", "aggregate", "as.dist", "cor", "cutree", "hclust", "lm", "predict")
-importFrom(factoextra, fviz_nbclust, hcut)
-importFrom(splines,bs)
-importFrom(ggplot2,labs)

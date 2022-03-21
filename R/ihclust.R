@@ -1,19 +1,33 @@
-#usethis::use_package(factoextra)
-#usethis::use_package(splines)
-#usethis::use_package(ggplot2)
-
 #' ihclust
-#'
-#' @param data
-#' @param smooth
-#' @param cor_criteria
-#' @param max_iteration
-#' @param verbose
-#'
+#' @title Iterative Hierarchical Clustering (IHC)
+#' @description This function identifies inhomogeneous clusters
+#' using iterative hierarchical clustering (IHC) method.
+#' @param data a numeric matrix, each row representing a time-series
+#' and each column representing a time point
+#' @param smooth if smooth = 'TRUE', a smooth function is applied before clustering
+#' @param cor_criteria pre-specified correlation criteria
+#' @param  max_iteration maximum number of iterations
+#' @param verbose if verbose = 'TRUE', the result of a progress is printed
+#' @details The IHC algorithm implements the three steps as outlined below.
+#'First, the Initialization step clusters the data using hierarchical clustering.
+#'Second, cluster centers are obtained as an average of all the data points in the cluster.
+#'The Merging step considers each of the cluster centers (exemplars) as ‘new data point’,
+#'and use the same procedure described in the Initialization step to merge the exemplars into a new set of clusters.
+#'Third, the Pruning step streamlines the clusters and removes inconsistencies by
+#'reassessing the cluster membership by each data point.
 #' @return
-#' @export
-#'
-#' @examples
+#' \itemize{
+#'  \item Cluster_Label - the cluster label for each data point
+#'  \item Num_Iterations - total number of iterations
+#'  \item Unique_Clusters_in_Iteration - unique clusters in each iteration}
+#' @references 1. Song, J., Carey, M., Zhu, H., Miao, H., Ram´ırez, J. C., & Wu, H. (2018). Identifying the dynamic gene regulatory network during latent HIV-1 reactivation using high-dimensional ordinary differential equations. International Journal of Computational Biology and Drug Design, 11,135-153. doi: 10.1504/IJCBDD.2018.10011910.
+#' 2. Wu, S., & Wu, H. (2013). More powerful significant testing for time course gene expression data using functional principal component analysis approaches. BMC Bioinformatics, 14:6.
+#' 3. Carey, M., Wu, S., Gan, G. & Wu, H. (2016). Correlation-based iterative clustering methods for time course data: The identification of temporal gene response modules for influenza infection in humans. Infectious Disease Modeling, 1, 28-39.
+#' @export ihclust
+#' @importFrom factoextra fviz_nbclust hcut
+#' @importFrom splines bs
+#' @importFrom ggplot2 labs
+#' @importFrom stats aggregate as.dist cor cutree hclust lm predict
 ihclust <- function(data, smooth = TRUE, cor_criteria = 0.75, max_iteration = 100, verbose = TRUE){
   time <- seq(1,ncol(data),1)
   pred.data <- matrix(rep(NA,nrow(data)*ncol(data)),ncol=ncol(data))

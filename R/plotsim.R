@@ -1,11 +1,15 @@
 #' plotsim
-#'
-#' @param curve
-#'
-#' @return
+#' @description This function generates line plots
+#' based on types of dataset obtained from simcurve().
+#' @param curve simulated dataset to be used
+#' @details For dataset containing radomly generated areas with change,
+#' line plots for 1. All areas over time, 2. areas with change, and
+#' 3. areas with no change are generated.
+#' For dataset containing curves with fixed coefficients and random noise,
+#' line plots of simulated data for 3 clusters are generated.
 #' @export
-#'
-#' @examples
+#' @importFrom graphics lines par
+#' @importFrom grDevices dev.off tiff
 plotsim <- function(curve){
   if (curve$parameters[3] == "random"){
     mysimdata <- curve$data

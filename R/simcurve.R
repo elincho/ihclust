@@ -1,3 +1,21 @@
+#' simcurve
+#' @description This function generates two kinds of datasets.
+#' 1. Randomly generates curves with change/no change.
+#' 2. Generates true curves assumed from fixed coeffecients with some random noise.
+#' @param numareas number of areas to generate
+#' @param p proportion of the areas that have significant change
+#' @param type type of curves generated
+#' @param normerr standard deviation of the Normal distribution (with mean zero) of which the coefficients are generated
+#' @details If type = "random", the function generates curves with change/no change.
+#' If type = "fixed", the function generates true curves assumed from fixed coefficients with some random noise.
+#' If numareas is not specified, it is assumed as a vector of c(300,300,300).
+#' If normerr is not specified, it is assumed as a value of 0.01. It is ignored when type= "fixed".
+#' @return
+#' \itemize{
+#'  \item data - simulated data
+#'  \item parameters - parameters used to generate the data}
+#' @export simcurve
+#' @importFrom stats rnorm
 simcurve <- function(numareas=c(300,300,300),p,type,normerr=.01){
   sumnum <- sum(numareas)
   time=seq(1,52,1)

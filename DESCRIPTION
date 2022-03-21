@@ -2,11 +2,15 @@ Package: ihclust
 Type: Package
 Title: Iterative Hierarchical Clustering (IHC)
 Version: 0.1.0
-Author: Elin Cho, Jaejoon Song, Yuting Xu
+Author: Elin Cho, Yuting Xu, Jaejoon Song 
 Maintainer: Elin Cho <elincho524@gmail.com>
-Description: Includes three functions, 1. a function to simulate dispensing data, 2. a function to plot the simulated datasets, and 3. a function to identify inhomogeneous clusters using iterative hierarchical clustering (IHC) method. 
+Description: This package provides a set of tools to i) identify geographic areas 
+  with significant change over time in drug utilization, and 
+  ii) characterize common change over time patterns among the time series 
+  for multiple geographic areas.
 License: GNU General Public License (>=3)
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.1.2
+Depends: R (>= 3.5.0)
 Imports: factoextra, splines, ggplot2, foreach, doParallel, parallel

@@ -4,9 +4,8 @@ Title: Iterative Hierarchical Clustering (IHC)
 Version: 0.1.0
 Author: Elin Cho, Yuting Xu, Jaejoon Song 
 Maintainer: Elin Cho <elincho524@gmail.com>
-Description: This package provides a set of tools to 
-i) identify geographic areas with significant change over time in drug utilization, and 
-ii) characterize common change over time patterns among the time series for multiple geographic areas.
+Description: This package provides a set of tools to identify geographic areas with significant change over time in drug utilization, and 
+to characterize common change over time patterns among the time series for multiple geographic areas.
 License: GNU General Public License (>=3)
 Encoding: UTF-8
 LazyData: true

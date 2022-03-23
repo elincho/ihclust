@@ -7,7 +7,7 @@
 #' 3. areas with no change are generated.
 #' For dataset containing curves with fixed coefficients and random noise,
 #' line plots of simulated data for 3 clusters are generated.
-#' @export
+#' @export plotsim
 #' @importFrom graphics lines par
 #' @importFrom grDevices dev.off tiff
 plotsim <- function(curve){

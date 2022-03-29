@@ -35,8 +35,6 @@ This function identifies inhomogeneous clusters
 using iterative hierarchical clustering (IHC) method.
 }
 \details{
-ihclust
-
 The IHC algorithm implements the three steps as outlined below.
 First, the Initialization step clusters the data using hierarchical clustering.
 Second, cluster centers are obtained as an average of all the data points in the cluster.
@@ -44,6 +42,70 @@ The Merging step considers each of the cluster centers (exemplars) as ‘new dat
 and use the same procedure described in the Initialization step to merge the exemplars into a new set of clusters.
 Third, the Pruning step streamlines the clusters and removes inconsistencies by
 reassessing the cluster membership by each data point.
+}
+\examples{
+# This is an example not using the permutation approach
+
+opioid_data_noNA <- opioidData[complete.cases(opioidData), ] #remove NAs
+
+mydata <- as.matrix(opioid_data_noNA[,4:18])
+
+testchange_results <- testchange(data=mydata,perm=FALSE,time=seq(1,15,1))
+
+
+
+clustering_results <- ihclust(data=testchange_resutls$...)
+
+
+
+\notrun{
+
+# This is an example using the permutation approach
+
+opioid_data_noNA <- opioidData[complete.cases(opioidData), ] #remove NAs
+
+mydata <- as.matrix(opioid_data_noNA[,4:18])
+
+testchange_results <- testchange(data=mydata,perm=TRUE,nperm=10000,time=seq(1,15,1))
+
+
+
+clustering_results <- ihclust(data=testchange_resutls$...)
+
+}
+
+
+
+
+
+# This is an example using simulated data
+
+mydata <- simcurve(...)
+
+testchange_results <- testchange(data=mydata,perm=FALSE,time=seq(1,15,1))
+
+
+
+clustering_results <- ihclust(data=testchange_resutls$...)
+
+
+
+\notrun{
+
+# This is an example using the permutation approach
+
+mydata <- simcurve(...)
+
+testchange_results <- testchange(data=mydata,perm=TRUE,nperm=10000,time=seq(1,15,1))
+
+
+
+clustering_results <- ihclust(data=testchange_resutls$...)
+
+}
+
+
+
 }
 \references{
 1. Song, J., Carey, M., Zhu, H., Miao, H., Ram´ırez, J. C., & Wu, H. (2018). Identifying the dynamic gene regulatory network during latent HIV-1 reactivation using high-dimensional ordinary differential equations. International Journal of Computational Biology and Drug Design, 11,135-153. doi: 10.1504/IJCBDD.2018.10011910.

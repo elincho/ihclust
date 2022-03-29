@@ -27,6 +27,7 @@ testchange <- function(data,time,perm=FALSE,nperm=100,numclust=64){
 
   # First, calculate an F value for each geographic area
   obs.F <- rep(NA,nrow(data))
+  p.values <- rep(NA,nrow(data))
 
   for(i in 1:nrow(data)){
     obsData.centered <- as.numeric(scale(as.numeric(data[i,]), scale = FALSE))
@@ -39,13 +40,15 @@ testchange <- function(data,time,perm=FALSE,nperm=100,numclust=64){
     dfnum <- fit1$df.residual
     dfdenom <- fit2$df.residual
     Fval <- ((RSS0-RSS1)/dfnum)/(RSS1/dfdenom)
-
+    pval <- pf(Fval, dfnum, dfdenom, lower.tail = FALSE)
     obs.F[i] <- Fval
+    p.values[i] <- pval
+
   }
 
   # Save the observed F value
   results$obs.F <- obs.F
-
+  results$p.values <- p.values
   if(perm==TRUE){
     print("Performing permutation test..")
     #

@@ -31,3 +31,6 @@ If type = "fixed", the function generates true curves assumed from fixed coeffic
 If numareas is not specified, it is assumed as a vector of c(300,300,300).
 If normerr is not specified, it is assumed as a value of 0.01. It is ignored when type= "fixed".
 }
+\examples{
+mydata <- simcurve(numareas = c(300, 300, 300), p=0.01, type="fixed", normerr = 0.01)
+}

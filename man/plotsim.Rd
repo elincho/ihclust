@@ -20,8 +20,3 @@ line plots for 1. All areas over time, 2. areas with change, and
 For dataset containing curves with fixed coefficients and random noise,
 line plots of simulated data for 3 clusters are generated.
 }
-\examples{
-mydata <- simcurve(numareas = c(300, 300, 300), p=0.01, type="fixed", normerr = 0.01)
-
-plotsim(mydata)
-}

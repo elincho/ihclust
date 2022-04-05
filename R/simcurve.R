@@ -16,7 +16,7 @@
 #'  \item parameters - parameters used to generate the data}
 #' @export simcurve
 #' @importFrom stats rnorm
-simcurve <- function(numareas=c(300,300,300),p,type,normerr=.01){
+simcurve <- function(numareas=c(300,300,300),p=0.05,type,normerr=.1){
   sumnum <- sum(numareas)
   time=seq(1,52,1)
   ntime <- length(time)

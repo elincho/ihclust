@@ -15,7 +15,6 @@ X2006-X2020 = estimated opioid dispensing rate per 100 persons in each year
 data(opioidData)
 }
 \description{
-A dataset containing estimated opioid dispensing rate
-per 100 persons in United States, 2006-2020.
+A dataset containing estimated opioid dispensing rate per 100 persons in United States, 2006-2020.
 }
 \keyword{datasets}

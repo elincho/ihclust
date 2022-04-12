@@ -1,7 +1,6 @@
 #' ihclust
 #' @title Iterative Hierarchical Clustering (IHC)
-#' @description This function identifies inhomogeneous clusters
-#' using iterative hierarchical clustering (IHC) method.
+#' @description This function identifies inhomogeneous clusters using iterative hierarchical clustering (IHC) method.
 #' @param data a numeric matrix, each row representing a time-series
 #' and each column representing a time point
 #' @param smooth if smooth = 'TRUE', a smooth function is applied before clustering
@@ -15,6 +14,55 @@
 #'and use the same procedure described in the Initialization step to merge the exemplars into a new set of clusters.
 #'Third, the Pruning step streamlines the clusters and removes inconsistencies by
 #'reassessing the cluster membership by each data point.
+#'@examples
+#'# This is an example not using the permutation approach
+#'
+#'opioid_data_noNA <- opioidData[complete.cases(opioidData), ] #remove NAs
+#'
+#'mydata <- as.matrix(opioid_data_noNA[,4:18])
+#'
+#'testchange_results <- testchange(data=mydata,perm=FALSE,time=seq(1,15,1))
+#'
+#'data_change <- testchange_results$sig.change
+#'
+#'clustering_results <- ihclust(data=data_change, smooth = TRUE,
+#'cor_criteria = 0.75, max_iteration = 100, verbose = TRUE)
+#'\dontrun{
+#'# This is an example using the permutation approach
+#'
+#'opioid_data_noNA <- opioidData[complete.cases(opioidData), ] #remove NAs
+#'
+#'mydata <- as.matrix(opioid_data_noNA[,4:18])
+#'
+#'testchange_results <- testchange(data=mydata,perm=TRUE,nperm=10000,time=seq(1,15,1))
+#'
+#'opioid_data_change <- opioid_data_noNA[p.adjusted<.05, ]
+#'
+#'clustering_results <- ihclust(data=opioid_data_change, smooth = TRUE,
+#'cor_criteria = 0.75, max_iteration = 100, verbose = TRUE)
+#'
+#'# This is an example using simulated data
+#'
+#'mydata <- simcurve(numareas = c(300, 300, 300), p=0.01, type="random")
+#'
+#'testchange_results <- testchange(data=mydata$data,perm=FALSE,time=seq(1,52,1))
+#'
+#'data_change <- testchange_results$sig.change
+#'
+#'clustering_results <- ihclust(data=data_change, smooth = TRUE,
+#'cor_criteria = 0.75, max_iteration = 100, verbose = TRUE)
+#'
+#'# This is an example using the permutation approach on the simulated data
+#'
+#'mydata <- simcurve(numareas = c(300, 300, 300), p=0.01, type="random")
+#'
+#'testchange_results <- testchange(data=mydata$data,perm=TRUE,nperm=10000,time=seq(1,52,1))
+#'
+#'data_change <- testchange_results$data[p.adjusted<.05, ]
+#'
+#'clustering_results <- ihclust(data=data_change, smooth = TRUE,
+#'cor_criteria = 0.75, max_iteration = 100, verbose = TRUE)
+#'}
 #' @return
 #' \itemize{
 #'  \item Cluster_Label - the cluster label for each data point

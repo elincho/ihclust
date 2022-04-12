@@ -4,25 +4,57 @@
 \alias{testchange}
 \title{testchange}
 \usage{
-testchange(data, time)
+testchange(data, time, perm = FALSE, nperm = 100, numclust = 4, numF = 1000)
 }
 \arguments{
 \item{data}{a numeric matrix, each row representing a time-series
 and each column representing a time point}
 
 \item{time}{defines the time sequence}
+
+\item{perm}{if perm = 'TRUE', a permutation is performed}
+
+\item{nperm}{number of permuations}
+
+\item{numclust}{defines the number of clusters for the parallel processing}
+
+\item{numF}{number of top F values to be selected when perm = 'FALSE'}
 }
 \description{
 This function identifies geographic areas with significant change over time.
 }
+\details{
+number of permutations of >=10,000 is ideal
+}
 \examples{
 # This is an example not using the permutation approach
+
 opioid_data_noNA <- opioidData[complete.cases(opioidData), ] #remove NAs
+
 mydata <- as.matrix(opioid_data_noNA[,4:18])
-testchange_results <- testchange(data=mydata,time=seq(1,15,1))
-# This is an example using simulated data
-mydata <- simcurve(numareas = c(300, 300, 300), p=0.01, type="fixed", normerr = 0.01)
-testchange_results <- testchange(data=mydata$data,time=seq(1,52,1))
+
+testchange_results <- testchange(data=mydata,perm=FALSE,time=seq(1,15,1))
+\dontrun{
+  # This is an example using the permutation approach
+
+  opioid_data_noNA <- opioidData[complete.cases(opioidData), ] #remove NAs
+
+  mydata <- as.matrix(opioid_data_noNA[,4:18])
+
+  testchange_results <- testchange(data=mydata,perm=TRUE,nperm=10000,time=seq(1,15,1))
+
+  # This is an example using simulated data
+
+  mydata <- simcurve(numareas = c(300, 300, 300), p=0.01, type="random")
+
+  testchange_results <- testchange(data=mydata$data,perm=FALSE,time=seq(1,52,1))
+
+  # This is an example using the permutation approach on the simulated data
+
+  mydata <- simcurve(numareas = c(300, 300, 300), p=0.01, type="random")
+
+  testchange_results <- testchange(data=mydata$data,perm=TRUE, nperm=10000,time=seq(1,52,1))}
+
 }
 \references{
 1. Song, J., Carey, M., Zhu, H., Miao, H., Ram´ırez, J. C., & Wu, H. (2018). Identifying the dynamic gene regulatory network during latent HIV-1 reactivation using high-dimensional ordinary differential equations. International Journal of Computational Biology and Drug Design, 11,135-153. doi: 10.1504/IJCBDD.2018.10011910.

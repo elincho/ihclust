@@ -31,8 +31,7 @@ and each column representing a time point}
  \item Unique_Clusters_in_Iteration - unique clusters in each iteration}
 }
 \description{
-This function identifies inhomogeneous clusters
-using iterative hierarchical clustering (IHC) method.
+This function identifies inhomogeneous clusters using iterative hierarchical clustering (IHC) method.
 }
 \details{
 ihclust
@@ -44,6 +43,56 @@ The Merging step considers each of the cluster centers (exemplars) as ‘new dat
 and use the same procedure described in the Initialization step to merge the exemplars into a new set of clusters.
 Third, the Pruning step streamlines the clusters and removes inconsistencies by
 reassessing the cluster membership by each data point.
+}
+\examples{
+# This is an example not using the permutation approach
+
+opioid_data_noNA <- opioidData[complete.cases(opioidData), ] #remove NAs
+
+mydata <- as.matrix(opioid_data_noNA[,4:18])
+
+testchange_results <- testchange(data=mydata,perm=FALSE,time=seq(1,15,1))
+
+data_change <- testchange_results$sig.change
+
+clustering_results <- ihclust(data=data_change, smooth = TRUE,
+cor_criteria = 0.75, max_iteration = 100, verbose = TRUE)
+\dontrun{
+# This is an example using the permutation approach
+
+opioid_data_noNA <- opioidData[complete.cases(opioidData), ] #remove NAs
+
+mydata <- as.matrix(opioid_data_noNA[,4:18])
+
+testchange_results <- testchange(data=mydata,perm=TRUE,nperm=10000,time=seq(1,15,1))
+
+opioid_data_change <- opioid_data_noNA[p.adjusted<.05, ]
+
+clustering_results <- ihclust(data=opioid_data_change, smooth = TRUE,
+cor_criteria = 0.75, max_iteration = 100, verbose = TRUE)
+
+# This is an example using simulated data
+
+mydata <- simcurve(numareas = c(300, 300, 300), p=0.01, type="random")
+
+testchange_results <- testchange(data=mydata$data,perm=FALSE,time=seq(1,52,1))
+
+data_change <- testchange_results$sig.change
+
+clustering_results <- ihclust(data=data_change, smooth = TRUE,
+cor_criteria = 0.75, max_iteration = 100, verbose = TRUE)
+
+# This is an example using the permutation approach on the simulated data
+
+mydata <- simcurve(numareas = c(300, 300, 300), p=0.01, type="random")
+
+testchange_results <- testchange(data=mydata$data,perm=TRUE,nperm=10000,time=seq(1,52,1))
+
+data_change <- testchange_results$data[p.adjusted<.05, ]
+
+clustering_results <- ihclust(data=data_change, smooth = TRUE,
+cor_criteria = 0.75, max_iteration = 100, verbose = TRUE)
+}
 }
 \references{
 1. Song, J., Carey, M., Zhu, H., Miao, H., Ram´ırez, J. C., & Wu, H. (2018). Identifying the dynamic gene regulatory network during latent HIV-1 reactivation using high-dimensional ordinary differential equations. International Journal of Computational Biology and Drug Design, 11,135-153. doi: 10.1504/IJCBDD.2018.10011910.

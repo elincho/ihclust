@@ -4,7 +4,7 @@
 \alias{simcurve}
 \title{simcurve}
 \usage{
-simcurve(numareas = c(300, 300, 300), p, type, normerr = 0.01)
+simcurve(numareas = c(300, 300, 300), p = 0.05, type, normerr = 0.1)
 }
 \arguments{
 \item{numareas}{number of areas to generate}
@@ -25,81 +25,122 @@ This function generates two kinds of datasets.
 1. Randomly generates curves with change/no change.
 2. Generates true curves assumed from fixed coeffecients with some random noise.
 }
-\examples{
-\notrun{
-# example simulated datset with plots
-data_ran <- simcurve(numareas = c(300, 300, 300), p=0.05, type= "random")
-data_fix <- simcurve(numareas = c(300, 300, 300), type= "fixed", normerr = 0.1)
-
-plotsim <- function(curve){
-  if (curve$parameters[3] == "random"){
-    mysimdata <- curve$data
-    tiff('Fig1_simulate_areas_with_change.tiff', units="in", width=7, height=3, res=300, compression = 'lzw')
-
-    par(mfrow=c(1,3))
-    time=seq(1,52,1)
-    plot(time, mysimdata[1,],type='l', lwd = 0.2, ylim=c(-3.5,3.5),
-         ylab="Standardized number of prescriptions dispensed",
-         xlab="",
-         main="All Areas Over Time \n (n=900)",
-         cex.lab=1.2, cex.axis=0.8, cex.main=1, col = "red")
-    for(i in 2:45){lines(time,mysimdata[i,],ylim=c(-3.5,3.5), col = "red")}
-    for(i in 46:900){lines(time,mysimdata[i,],ylim=c(-3.5,3.5), col = "deepskyblue")}
-
-    plot(time, mysimdata[1,],type='l',ylim=c(-3.5,3.5),
-         ylab="",
-         xlab="Time (Weeks)",
-         main="Areas with Change Over Time \n (n=45)",
-         cex.lab=1.2, cex.axis=0.8, cex.main=1, col = "red")
-    for(i in 2:45){lines(time,mysimdata[i,],ylim=c(-3.5,3.5), col = "red")}
-
-    plot(time, mysimdata[46,],type='l',ylim=c(-3.5,3.5),
-         ylab="",
-         xlab="",
-         main="Areas with No Change \n (n=855)",
-         cex.lab=1.2, cex.axis=0.8, cex.main=1, col = "deepskyblue")
-    for(i in 47:900){lines(time,mysimdata[i,],ylim=c(-3.5,3.5), col = "deepskyblue")}
-    dev.off()
-  }
-  else if (curve$parameters[3] == "fixed"){
-    simulated_clusters <- curve$data
-    tiff('Fig2_simulation_clusters.tiff', units="in", width=6, height=2, res=300, compression = 'lzw')
-    par(mfrow=c(1,3))
-    time <- seq(1,52,1)
-    plot(time, simulated_clusters[1,],type='l',ylim=c(-3.5,3.5),
-         ylab="Standardized number of prescriptions dispensed",
-         xlab = "",
-         #xlab="Time",
-         main="Simulated data for cluster 1",
-         cex.lab=0.8, cex.axis=0.8, cex.main=1)
-    for(i in 2:300){lines(time,simulated_clusters[i,],ylim=c(-3.5,3.5))}
-
-    plot(time, simulated_clusters[301,],type='l',ylim=c(-3.5,3.5),
-         #ylab="Standardized number of prescriptions dispensed",
-         ylab = "",
-         xlab="Time (Weeks)",
-         main="Simulated data for cluster 2",
-         cex.lab=0.8, cex.axis=0.8, cex.main=1)
-    for(i in 301:600){lines(time,simulated_clusters[i,],ylim=c(-3.5,3.5))}
-
-    plot(time, simulated_clusters[601,],type='l',ylim=c(-3.5,3.5),
-         ylab = "",
-         xlab = "",
-         #ylab="Standardized number of prescriptions dispensed",
-         #xlab="Time",
-         main="Simulated data for cluster 3",
-         cex.lab=0.8, cex.axis=0.8, cex.main=1)
-    for(i in 601:900){lines(time,simulated_clusters[i,],ylim=c(-3.5,3.5))}
-    dev.off()
-    }}
-plotsim(data_ran)
-plotsim(data_fix)
-}
-}
 \details{
 If type = "random", the function generates curves with change/no change.
 If type = "fixed", the function generates true curves assumed from fixed coefficients with some random noise.
 If numareas is not specified, it is assumed as a vector of c(300,300,300).
-If normerr is not specified, it is assumed as a value of 0.1. It is ignored when type= "random."
-If p is not specified, it is assumed as a value of 0.05. It is ignored when type= "fixed."
+If normerr is not specified, it is assumed as a value of 0.01. It is ignored when type= "random".
+}
+\examples{
+mydata_ran <- simcurve(numareas = c(300, 300, 300), p=0.01, type="random")
+
+mydata_fixed <- simcurve(numareas = c(300, 300, 300), p=0.01, type="fixed", normerr = 0.1)
+\dontrun{
+# this is an example for plotting the outputs using the function plotsim()
+
+plotsim <- function(curve){
+
+if (curve$parameters[3] == "random"){
+mysimdata <- curve$data
+
+tiff('Fig1_simulate_counties_with_change.tiff', units="in", width=7, height=3,
+res=300, compression = 'lzw')
+
+par(mfrow=c(1,3))
+
+time=seq(1,52,1)
+
+plot(time, mysimdata[1,],type='l', lwd = 0.2, ylim=c(-3.5,3.5),
+
+ylab="Standardized number of prescriptions dispensed",
+
+xlab="Time (Weeks)",
+
+main="All counties Over Time \n (n=900)",
+
+cex.lab=1.2, cex.axis=0.8, cex.main=1, col = "red")
+
+for(i in 2:45){lines(time,mysimdata[i,],ylim=c(-3.5,3.5), col = "red")}
+
+for(i in 46:900){lines(time,mysimdata[i,],ylim=c(-3.5,3.5), col = "deepskyblue")}
+
+plot(time, mysimdata[1,],type='l',ylim=c(-3.5,3.5),
+
+ylab="Standardized number of prescriptions dispensed",
+
+xlab="Time (Weeks)",
+
+main="Counties with Change Over Time \n (n=45)",
+
+cex.lab=1.2, cex.axis=0.8, cex.main=1, col = "red")
+
+for(i in 2:45){lines(time,mysimdata[i,],ylim=c(-3.5,3.5), col = "red")}
+
+plot(time, mysimdata[46,],type='l',ylim=c(-3.5,3.5),
+
+ylab="Standardized number of prescriptions dispensed",
+
+xlab="Time (Weeks)",
+
+main="Counties with No Change \n (n=855)",
+
+cex.lab=1.2, cex.axis=0.8, cex.main=1, col = "deepskyblue")
+
+for(i in 47:900){lines(time,mysimdata[i,],ylim=c(-3.5,3.5), col = "deepskyblue")}
+
+dev.off()
+
+}
+
+else if (curve$parameters[3] == "fixed"){
+
+simulated_clusters <- curve$data
+
+tiff('Fig2_simulation_clusters.tiff', units="in", width=6, height=2,
+res=300, compression = 'lzw')
+
+par(mfrow=c(1,3))
+
+time <- seq(1,52,1)
+
+plot(time, simulated_clusters[1,],type='l',ylim=c(-3.5,3.5),
+
+ylab="Standardized number of prescriptions dispensed",
+
+xlab="Time",
+
+main="Simulated data for cluster 1",
+
+cex.lab=0.8, cex.axis=0.8, cex.main=1)
+
+for(i in 2:300){lines(time,simulated_clusters[i,],ylim=c(-3.5,3.5))}
+
+plot(time, simulated_clusters[301,],type='l',ylim=c(-3.5,3.5),
+
+ylab="Standardized number of prescriptions dispensed",
+
+xlab="Time (Weeks)",
+
+main="Simulated data for cluster 2",
+
+cex.lab=0.8, cex.axis=0.8, cex.main=1)
+
+for(i in 301:600){lines(time,simulated_clusters[i,],ylim=c(-3.5,3.5))}
+
+plot(time, simulated_clusters[601,],type='l',ylim=c(-3.5,3.5),
+
+ylab="Standardized number of prescriptions dispensed",
+
+xlab="Time",
+
+main="Simulated data for cluster 3",
+
+cex.lab=0.8, cex.axis=0.8, cex.main=1)
+
+for(i in 601:900){lines(time,simulated_clusters[i,],ylim=c(-3.5,3.5))}
+dev.off()
+}}
+plotsim(mydata_ran)
+plotsim(mydata_fix)
+}
 }

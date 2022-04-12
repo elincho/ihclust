@@ -1,7 +1,5 @@
 #' Opioid Dispensing Rates
-#' @description A dataset containing estimated opioid dispensing rate
-#' per 100 persons in United States, 2006-2020.
-#'
+#' @description A dataset containing estimated opioid dispensing rate per 100 persons in United States, 2006-2020.
 #' @docType data
 #' @usage data(opioidData)
 #' @format data.frame; columns: fips = FIPS county code, State = State, County = County,

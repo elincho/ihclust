@@ -36,7 +36,7 @@
 #'
 #'testchange_results <- testchange(data=mydata,perm=TRUE,nperm=10000,time=seq(1,15,1))
 #'
-#'opioid_data_change <- opioid_data_noNA[p.adjusted<.05, ]
+#'opioid_data_change <- mydata[p.adjusted<.05, ]
 #'
 #'clustering_results <- ihclust(data=opioid_data_change, smooth = TRUE,
 #'cor_criteria = 0.75, max_iteration = 100, verbose = TRUE)

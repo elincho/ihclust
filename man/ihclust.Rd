@@ -49,7 +49,7 @@ reassessing the cluster membership by each data point.
 
 opioid_data_noNA <- opioidData[complete.cases(opioidData), ] #remove NAs
 
-mydata <- as.matrix(opioid_data_noNA[1:1000,4:18])
+mydata <- as.matrix(opioid_data_noNA[1:500,4:18])
 
 testchange_results <- testchange(data=mydata,perm=FALSE,time=seq(1,15,1))
 

@@ -54,7 +54,7 @@ plot(time, mysimdata[1,],type='l', lwd = 0.2, ylim=c(-3.5,3.5),
 
 ylab="Standardized number of prescriptions dispensed",
 
-xlab="Time (Weeks)",
+xlab="",
 
 main="All counties Over Time \n (n=900)",
 
@@ -66,7 +66,7 @@ for(i in 46:900){lines(time,mysimdata[i,],ylim=c(-3.5,3.5), col = "deepskyblue")
 
 plot(time, mysimdata[1,],type='l',ylim=c(-3.5,3.5),
 
-ylab="Standardized number of prescriptions dispensed",
+ylab="",
 
 xlab="Time (Weeks)",
 
@@ -78,9 +78,9 @@ for(i in 2:45){lines(time,mysimdata[i,],ylim=c(-3.5,3.5), col = "red")}
 
 plot(time, mysimdata[46,],type='l',ylim=c(-3.5,3.5),
 
-ylab="Standardized number of prescriptions dispensed",
+ylab="",
 
-xlab="Time (Weeks)",
+xlab="",
 
 main="Counties with No Change \n (n=855)",
 
@@ -107,7 +107,7 @@ plot(time, simulated_clusters[1,],type='l',ylim=c(-3.5,3.5),
 
 ylab="Standardized number of prescriptions dispensed",
 
-xlab="Time",
+xlab="",
 
 main="Simulated data for cluster 1",
 
@@ -117,7 +117,7 @@ for(i in 2:300){lines(time,simulated_clusters[i,],ylim=c(-3.5,3.5))}
 
 plot(time, simulated_clusters[301,],type='l',ylim=c(-3.5,3.5),
 
-ylab="Standardized number of prescriptions dispensed",
+ylab="",
 
 xlab="Time (Weeks)",
 
@@ -129,9 +129,9 @@ for(i in 301:600){lines(time,simulated_clusters[i,],ylim=c(-3.5,3.5))}
 
 plot(time, simulated_clusters[601,],type='l',ylim=c(-3.5,3.5),
 
-ylab="Standardized number of prescriptions dispensed",
+ylab="",
 
-xlab="Time",
+xlab="",
 
 main="Simulated data for cluster 3",
 

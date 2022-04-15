@@ -33,7 +33,7 @@
 #'
 #' ylab="Standardized number of prescriptions dispensed",
 #'
-#' xlab="Time (Weeks)",
+#' xlab="",
 #'
 #' main="All counties Over Time \n (n=900)",
 #'
@@ -45,7 +45,7 @@
 #'
 #' plot(time, mysimdata[1,],type='l',ylim=c(-3.5,3.5),
 #'
-#' ylab="Standardized number of prescriptions dispensed",
+#' ylab="",
 #'
 #' xlab="Time (Weeks)",
 #'
@@ -57,9 +57,9 @@
 #'
 #' plot(time, mysimdata[46,],type='l',ylim=c(-3.5,3.5),
 #'
-#' ylab="Standardized number of prescriptions dispensed",
+#' ylab="",
 #'
-#' xlab="Time (Weeks)",
+#' xlab="",
 #'
 #' main="Counties with No Change \n (n=855)",
 #'
@@ -86,7 +86,7 @@
 #'
 #' ylab="Standardized number of prescriptions dispensed",
 #'
-#' xlab="Time",
+#' xlab="",
 #'
 #' main="Simulated data for cluster 1",
 #'
@@ -96,7 +96,7 @@
 #'
 #' plot(time, simulated_clusters[301,],type='l',ylim=c(-3.5,3.5),
 #'
-#' ylab="Standardized number of prescriptions dispensed",
+#' ylab="",
 #'
 #' xlab="Time (Weeks)",
 #'
@@ -108,9 +108,9 @@
 #'
 #' plot(time, simulated_clusters[601,],type='l',ylim=c(-3.5,3.5),
 #'
-#' ylab="Standardized number of prescriptions dispensed",
+#' ylab="",
 #'
-#' xlab="Time",
+#' xlab="",
 #'
 #' main="Simulated data for cluster 3",
 #'

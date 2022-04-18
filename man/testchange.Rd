@@ -4,7 +4,7 @@
 \alias{testchange}
 \title{testchange}
 \usage{
-testchange(data, time, perm = FALSE, nperm = 100, numclust = 4, numF = 1000)
+testchange(data, time, perm = FALSE, nperm = 100, numclust = 4, numF = 500)
 }
 \arguments{
 \item{data}{a numeric matrix, each row representing a time-series

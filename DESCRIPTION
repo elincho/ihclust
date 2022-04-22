@@ -2,8 +2,10 @@ Package: ihclust
 Type: Package
 Title: Iterative Hierarchical Clustering (IHC)
 Version: 0.1.0
-Author: Elin Cho, Yuting Xu, Jaejoon Song 
-Maintainer: Elin Cho <elincho524@gmail.com>
+Authors@R: c(
+    person("Elin", "Cho", email = "elincho524@gmail.com", role = c("aut", "cre")),
+    person("Yuting", "Xu", role = "aut"), 
+    person("Jaejoon", "Song", role = "aut"))
 Description: Provides a set of tools to
   i) identify geographic areas with significant change over time in drug utilization, and 
   ii) characterize common change over time patterns among the time series for multiple geographic areas.

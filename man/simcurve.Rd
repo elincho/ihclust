@@ -16,6 +16,7 @@ simcurve(numareas = c(300, 300, 300), p = 0.05, type, normerr = 0.1)
 \item{normerr}{standard deviation of the Normal distribution (with mean zero) of which the coefficients are generated}
 }
 \value{
+Output from the function is a list of two items:
 \itemize{
  \item data - simulated data
  \item parameters - parameters used to generate the data}
@@ -141,6 +142,6 @@ for(i in 601:900){lines(time,simulated_clusters[i,],ylim=c(-3.5,3.5))}
 dev.off()
 }}
 plotsim(mydata_ran)
-plotsim(mydata_fix)
+plotsim(mydata_fixed)
 }
 }

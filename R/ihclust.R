@@ -7,6 +7,7 @@
 #' @param cor_criteria pre-specified correlation criteria
 #' @param  max_iteration maximum number of iterations
 #' @param verbose if verbose = 'TRUE', the result of a progress is printed
+#' @return
 #' @details The IHC algorithm implements the three steps as outlined below.
 #'First, the Initialization step clusters the data using hierarchical clustering.
 #'Second, cluster centers are obtained as an average of all the data points in the cluster.
@@ -63,7 +64,7 @@
 #'clustering_results <- ihclust(data=data_change, smooth = TRUE,
 #'cor_criteria = 0.75, max_iteration = 100, verbose = TRUE)
 #'}
-#' @return
+#' @return Output from the function is a list of three items:
 #' \itemize{
 #'  \item Cluster_Label - the cluster label for each data point
 #'  \item Num_Iterations - total number of iterations
@@ -83,7 +84,7 @@ ihclust <- function(data, smooth = TRUE, cor_criteria = 0.75, max_iteration = 10
   # alpha defines the correlation criteria
   alpha <- cor_criteria
   if(!((alpha>0) & (alpha<1))){
-    print("Warning: Correlation criteria should be greater than 0 and less than 1. The default value alpha=0.75 is used." )
+    warning("Warning: Correlation criteria should be greater than 0 and less than 1. The default value alpha=0.75 is used.")
     alpha=0.75
   }
 

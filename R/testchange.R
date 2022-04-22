@@ -7,7 +7,19 @@
 #' @param perm if perm = 'TRUE', a permutation is performed
 #' @param nperm number of permuations
 #' @param numclust defines the number of clusters for the parallel processing
-#' @param numF number of top F values to be selected when perm = 'FALSE'
+#' @param topF number of top F values to be selected when perm = 'FALSE'
+#' @return Output if perm = 'TRUE' is a list of three items:
+#' \itemize{
+#'  \item perm.F - F values obtained from permutation tests
+#'  \item p.values - p-values obtained from permutation tests
+#'  \item p.adjusted - p-values adjusted by Benjamini-Hochberg method
+#'  }
+#'  Output if perm = 'False' is a list of three items:
+#' \itemize{
+#'  \item obs.F - conventional F-statistic values
+#'  \item sig.change - areas with significant change over time pattern selected by top F-statistic values
+#'  \item sel.F - top F-statistic values selected
+#'  }
 #' @details number of permutations of >=10,000 is ideal
 #' @examples
 #' # This is an example not using the permutation approach
@@ -48,7 +60,7 @@
 #' @importFrom parallel makeCluster clusterCall stopCluster
 #' @importFrom stats p.adjust
 
-testchange <- function(data,time,perm=FALSE,nperm=100,numclust=4, numF= 500){
+testchange <- function(data,time,perm=FALSE,nperm=100,numclust=4, topF= 500){
 
   results <- list()
 
@@ -73,8 +85,8 @@ testchange <- function(data,time,perm=FALSE,nperm=100,numclust=4, numF= 500){
   if(perm==FALSE){
     ordered_data <- data[order(-obs.F),] # order data descending
     ordered_F <- obs.F[order(-obs.F)]
-    sig.change <- ordered_data[1:numF, ] # subset data with top N F values
-    sel.F <- ordered_F[1:numF]
+    sig.change <- ordered_data[1:topF, ] # subset data with top N F values
+    sel.F <- ordered_F[1:topF]
 
     #save results
     results$obs.F <- obs.F

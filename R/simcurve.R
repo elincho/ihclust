@@ -120,9 +120,9 @@
 #' dev.off()
 #' }}
 #' plotsim(mydata_ran)
-#' plotsim(mydata_fix)
+#' plotsim(mydata_fixed)
 #' }
-#' @return
+#' @return Output from the function is a list of two items:
 #' \itemize{
 #'  \item data - simulated data
 #'  \item parameters - parameters used to generate the data}

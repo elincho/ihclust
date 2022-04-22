@@ -4,7 +4,7 @@
 \alias{testchange}
 \title{testchange}
 \usage{
-testchange(data, time, perm = FALSE, nperm = 100, numclust = 4, numF = 500)
+testchange(data, time, perm = FALSE, nperm = 100, numclust = 4, topF = 500)
 }
 \arguments{
 \item{data}{a numeric matrix, each row representing a time-series
@@ -18,7 +18,21 @@ and each column representing a time point}
 
 \item{numclust}{defines the number of clusters for the parallel processing}
 
-\item{numF}{number of top F values to be selected when perm = 'FALSE'}
+\item{topF}{number of top F values to be selected when perm = 'FALSE'}
+}
+\value{
+Output if perm = 'TRUE' is a list of three items:
+\itemize{
+ \item perm.F - F values obtained from permutation tests
+ \item p.values - p-values obtained from permutation tests
+ \item p.adjusted - p-values adjusted by Benjamini-Hochberg method
+ }
+ Output if perm = 'False' is a list of three items:
+\itemize{
+ \item obs.F - conventional F-statistic values
+ \item sig.change - areas with significant change over time pattern selected by top F-statistic values
+ \item sel.F - top F-statistic values selected
+ }
 }
 \description{
 This function identifies geographic areas with significant change over time.
@@ -34,7 +48,7 @@ opioid_data_noNA <- opioidData[complete.cases(opioidData), ] #remove NAs
 mydata <- as.matrix(opioid_data_noNA[,4:18])
 
 testchange_results <- testchange(data=mydata,perm=FALSE,time=seq(1,15,1))
-\dontrun{
+\donttest{
   # This is an example using the permutation approach
 
   opioid_data_noNA <- opioidData[complete.cases(opioidData), ] #remove NAs

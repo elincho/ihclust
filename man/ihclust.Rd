@@ -25,6 +25,9 @@ and each column representing a time point}
 \item{verbose}{if verbose = 'TRUE', the result of a progress is printed}
 }
 \value{
+
+
+Output from the function is a list of three items:
 \itemize{
  \item Cluster_Label - the cluster label for each data point
  \item Num_Iterations - total number of iterations

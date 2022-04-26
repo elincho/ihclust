@@ -86,7 +86,7 @@ testchange <- function(data,time,perm=FALSE,nperm=100,numclust=4, topF= 500){
     permFval <- foreach::foreach(j=1:nperm, .combine='cbind', .packages="foreach") %dopar% {
 
       foreach(i=1:nrow(data), .combine='c') %do% {
-        library(splines)
+
         obsData.centered <- sample(scale(as.numeric(data[i,]), scale = FALSE)) # This shuffles the data at each CBSA
 
         # Same procedure to calculate the Fval, but now with the shuffled data

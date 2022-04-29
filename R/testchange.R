@@ -39,7 +39,7 @@
 #' @importFrom parallel makeCluster clusterCall stopCluster
 #' @importFrom stats p.adjust
 
-testchange <- function(data,time,perm=FALSE,nperm=100,numclust=4, topF= 500){
+testchange <- function(data,time,perm=FALSE,nperm=100,numclust=4, topF= 300){
 
   results <- list()
 

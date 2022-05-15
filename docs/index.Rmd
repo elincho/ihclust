@@ -17,7 +17,7 @@ ii) characterize common change over time patterns among the time series for mult
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# Installation
+## Installation
 
 ihclust can be installed using `install.packages("ihclust")`.
 
@@ -28,7 +28,7 @@ The development version from GitHub can be installed using the following code:
 devtools::install_github("https://github.com/elincho/ihclust")
 ```
 
-# Example
+## Example
 
 Following is an example illustrating usage of two main functions `testchange` and `ihclust`.
 
@@ -183,9 +183,9 @@ par(mfrow=c(2,3))
   }
 ```
 
-# Appendix
+## Appendix
 
-## Example using a dataset `opioidData` within the package
+### Example using a dataset `opioidData` within the package
 ```{r opioidData}
 data(opioidData)
 opioid_data_noNA <- opioidData[complete.cases(opioidData), ] 

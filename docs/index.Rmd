@@ -17,6 +17,13 @@ ii) characterize common change over time patterns among the time series for mult
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+```{css, echo=FALSE}
+.scroll-300 {
+  max-height: 300px;
+  overflow-y: auto;
+  background-color: inherit;
+}
+```
 ## Installation
 
 ihclust can be installed using `install.packages("ihclust")`.
@@ -199,7 +206,7 @@ opioid_change <- opioid_data[opioid_change_results$p.adjusted<.05, ]
 ```
 
 ### Step 2: Clustering Common Change over Time Patterns among the Time-series for Areas
-```{r step 2 Opioid, cache = TRUE}
+```{r step 2 Opioid, cache = TRUE, class.output="scroll-300"}
 opioid_clust_results <- ihclust(data=opioid_change, smooth = TRUE, cor_criteria = 0.75, max_iteration = 100, verbose = TRUE)
 ```
 
@@ -249,7 +256,7 @@ par(mfrow=c(3,5))
 ```
 
 ### List of counties in each cluster
-```{r counties}
+```{r counties, class.output="scroll-300"}
 opioid_county <- opioid_data_noNA[,3:18]
 opioid_change_county <- opioid_county[opioid_change_results$p.adjusted<.05, ]
 memb_county <- cbind(opioid_change_county,memb_opioid)

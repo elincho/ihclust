@@ -104,6 +104,7 @@ plotsim <- function(curve){
 
 plotsim(mydata)
 ```
+
 As shown by the figures above, there are 45 areas with significant change over time, and 855 areas with no significant change over time in the data.
 
 ### Step 1: Identifying Areas with Change over Time

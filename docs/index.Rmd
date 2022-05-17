@@ -7,10 +7,35 @@ output:
     toc_float: true
     toc_depth: 3
 ---
+## Introduction 
 
-`ihclust` is an R package that provides a set of tools to 
+Drug utilization data have been widely explored by researchers as the patterns of the data are associated with various factors such as health outcomes and disparities, regulatory policies, and social issues. Despite the depth of the data and potential public health impact, drug utilization data are often analyzed using simple descriptive analyses (e.g., presentation of monthly utilization trend at the national level). Methods and software to explore the time trend of drug utilization across granular geographic units have been limited. 
+
+Therefore, we introduce `ihclust`, an R package to: 
 i) identify geographic areas with significant change over time in drug utilization, and 
-ii) characterize common change over time patterns among the time series for multiple geographic areas. 
+ii) characterize common change over time patterns among the time series for multiple geographic areas.
+
+## Methods
+
+**Step 1: Method to Identify Areas with Change Over Time**
+
+* We assume that prescription dispensing data are discrete observations from a smooth underlying function,  
+denoted as $X_{i}(t)$, where $i$ indicates a geographic area. 
+* We identify a subset of geographic locations that change significantly with respect to time,      
+using hypothesis tests: $H_{0}:X_{i}(t)=0$ vs. $H_{a}:X_{i}(t)\neq0.$ 
+* For each geographic location, p-values are obtained using a permutation test.     
+P-values are adjusted by using Benjamini-Hochberg method. 
+
+**Step 2: Method to Characterize Temporal Change**
+
+We obtain clusters of geogrpahic areas that share similar temporal change patterns using Iterative Hiearchical Clustering (IHC).
+
+IHC implements the following three steps to the estimated smooth function, $\hat{X}_{i}(t)$:
+
+**1) Initialization:** The initial clusters are determined by hiearchical clustering.  
+**2) Merging:** Clusters are re-assessed by examining the cluster centers. Any clusters with pairwise correlations greather than a pre-specified threshold $\alpha$ are merged.   
+**3) Pruning:** Clustering membership is re-examined. Any cluster member with correlations between the cluster center and member less than $\alpha$ is removed from each existing cluster and assigned into a single-element cluster.   
+4) Steps 2-3 are repeated until a pre-defined convergence criteria is satisfied. 
 
 
 ```{r setup, include=FALSE}
@@ -24,6 +49,9 @@ knitr::opts_chunk$set(echo = TRUE)
   background-color: inherit;
 }
 ```
+
+
+
 ## Installation
 
 ihclust can be installed using `install.packages("ihclust")`.
@@ -37,7 +65,7 @@ devtools::install_github("https://github.com/elincho/ihclust")
 
 ## Example
 
-Following is an example illustrating usage of two main functions `testchange` and `ihclust`.
+Following is an example illustrating usage of two main functions `testchange` and `ihclust`. A simulated data will be used in this example. An additional example using real data of opioid dispensings in the United States is provied in the Appendix at the end of this page.
 
 ```{r library}
 library(ihclust)
@@ -112,13 +140,13 @@ plotsim <- function(curve){
 plotsim(mydata)
 ```
 
-As shown by the figures above, there are 45 areas with significant change over time, and 855 areas with no significant change over time in the data.
+In the figure above, the red lines represent the areas that have disensing data with significant change over time. The blue lines represent the areas that have dispenisng data with no significant change over time. There are 45 areas with change, and 855 areas with no change. 
 
 ### Step 1: Identifying Areas with Change over Time
 
 In the first step, `testchange` function below runs 100 permutation tests (`nperm = 100`) for each geograpghic area. The option `time = seq(1,52,1)` specifies the number of time points in the data, representing 52 weeks in this example. 
 
-The number of $\geq10000$ permutations is recommended, but we recommend starting with a smaller size for a practice as it can be time-consuming. 
+The number of $\geq10000$ permutations is recommended, but we recommend starting with a smaller size for a practice as it can be time-consuming to run permutation tests. 
 
 Adjusted p-values are measured against the significant level of 0.05 to sort out the areas that have significant change over time patterns in dispensing data. Among 900 areas, 40 areas were identified as having significant change (40 out of 45 areas
 correctly identified). 
@@ -144,7 +172,7 @@ sim_clust_results[["Cluster_Label"]]
 
 ### Clustering Results
 
-A total of 6 clusters were identified by the IHC algorithm. The largest cluster (Cluster 2) identified 13 areas sharing similar change over time patterns. The second largest cluster (Cluster 3) identified 12 areas. All clusters are shown by figures below. A red line represents the avearge pattern of rates in each cluster. 
+A total of 6 clusters were identified by the IHC algorithm. The largest cluster (Cluster 2) identified 13 areas sharing similar change over time patterns. The second largest cluster (Cluster 3) identified 12 areas. All clusters are shown by figures below.
 ```{r data pre-processing, cache = TRUE}
 # center the data for plotting
 sim_centered <- matrix(rep(NA,nrow(sim_change)*52),ncol=52)
@@ -190,9 +218,14 @@ par(mfrow=c(2,3))
   }
 ```
 
+The red line represents the average number (or rate) of prescription dispensings in each cluster, and the gray lines represent the numbers (or rates) of prescription dispenisngs in areas within each cluster. 
+
 ## Appendix
 
 ### Example using a dataset `opioidData` within the package
+
+The package includes a sample dataset from the CDC U.S.Opioid Dispensing Rate Maps (https://www.cdc.gov/drugoverdose/rxrate-maps/index.html). The data is publicly available and includes retail opioid prescription dispensing data at the state and county level from 2006 –2020. The data are obtained as rates of opioid dispensing per 100 persons. Further details about the data source are available from the CDC data resource page.
+
 ```{r opioidData}
 data(opioidData)
 opioid_data_noNA <- opioidData[complete.cases(opioidData), ] 
@@ -254,6 +287,8 @@ par(mfrow=c(3,5))
     }
   }
 ```
+
+The red line represents the average rate of opioid prescription dispensings in each cluster, and the gray lines represent the rates of prescription dispenisngs in counties within each cluster. 
 
 ### List of counties in each cluster
 ```{r counties, class.output="scroll-300"}

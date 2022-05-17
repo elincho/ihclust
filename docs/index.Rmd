@@ -11,8 +11,8 @@ output:
 
 Drug utilization data have been widely explored by researchers as the patterns of the data are associated with various factors such as health outcomes and disparities, regulatory policies, and social issues. Despite the depth of the data and potential public health impact, drug utilization data are often analyzed using simple descriptive analyses (e.g., presentation of monthly utilization trend at the national level). Methods and software to explore the time trend of drug utilization across granular geographic units have been limited. 
 
-Therefore, we introduce `ihclust`, an R package to: 
-i) identify geographic areas with significant change over time in drug utilization, and 
+Therefore, we introduce `ihclust`, an R package to:    
+i) identify geographic areas with significant change over time in drug utilization, and    
 ii) characterize common change over time patterns among the time series for multiple geographic areas.
 
 ## Methods

@@ -1539,7 +1539,7 @@ P-values are adjusted by using Benjamini-Hochberg method.</li>
 <p><strong>Step 2: Method to Characterize Temporal Change</strong></p>
 <p>We obtain clusters of geogrpahic areas that share similar temporal change patterns using Iterative Hiearchical Clustering (IHC).</p>
 <p>IHC implements the following three steps to the estimated smooth function, <span class="math inline">\(\hat{X}_{i}(t)\)</span>:</p>
-<p><strong>1) Initialization:</strong> The initial clusters are determined by hiearchical clustering<br />
+<p><strong>1) Initialization:</strong> The initial clusters are determined by hiearchical clustering.<br />
 <strong>2) Merging:</strong> Clusters are re-assessed by examining the cluster centers. Any clusters with pairwise correlations greather than a pre-specified threshold <span class="math inline">\(\alpha\)</span> are merged.<br />
 <strong>3) Pruning:</strong> Clustering membership is re-examined. Any cluster member with correlations between the cluster center and member less than <span class="math inline">\(\alpha\)</span> is removed from each existing cluster and assigned into a single-element cluster.<br />
 4) Steps 2-3 are repeated until a pre-defined convergence criteria is satisfied.</p>
@@ -1630,7 +1630,7 @@ plotsim(mydata)</code></pre>
 <div id="step-1-identifying-areas-with-change-over-time" class="section level3">
 <h3>Step 1: Identifying Areas with Change over Time</h3>
 <p>In the first step, <code>testchange</code> function below runs 100 permutation tests (<code>nperm = 100</code>) for each geograpghic area. The option <code>time = seq(1,52,1)</code> specifies the number of time points in the data, representing 52 weeks in this example.</p>
-<p>The number of <span class="math inline">\(\geq10000\)</span> permutations is recommended, but we recommend starting with a smaller size for a practice as it can be time-consuming.</p>
+<p>The number of <span class="math inline">\(\geq10000\)</span> permutations is recommended, but we recommend starting with a smaller size initially as it can be time-consuming to run permutation tests.</p>
 <p>Adjusted p-values are measured against the significant level of 0.05 to sort out the areas that have significant change over time patterns in dispensing data. Among 900 areas, 40 areas were identified as having significant change (40 out of 45 areas correctly identified).</p>
 <pre class="r"><code>sim_change_results &lt;- testchange(data=mydata$data,perm=TRUE, nperm=100,time=seq(1,52,1)) </code></pre>
 <pre><code>## [1] &quot;Performing permutation test..&quot;</code></pre>

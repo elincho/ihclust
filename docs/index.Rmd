@@ -146,7 +146,7 @@ In the figure above, the red lines represent the areas that have disensing data 
 
 In the first step, `testchange` function below runs 100 permutation tests (`nperm = 100`) for each geograpghic area. The option `time = seq(1,52,1)` specifies the number of time points in the data, representing 52 weeks in this example. 
 
-The number of $\geq10000$ permutations is recommended, but we recommend starting with a smaller size for a practice as it can be time-consuming to run permutation tests. 
+The number of $\geq10000$ permutations is recommended, but we recommend starting with a smaller size initially as it can be time-consuming to run permutation tests. 
 
 Adjusted p-values are measured against the significant level of 0.05 to sort out the areas that have significant change over time patterns in dispensing data. Among 900 areas, 40 areas were identified as having significant change (40 out of 45 areas
 correctly identified). 

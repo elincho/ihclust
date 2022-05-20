@@ -218,7 +218,7 @@ par(mfrow=c(2,3))
   }
 ```
 
-The red line represents the average number (or rate) of prescription dispensings in each cluster, and the gray lines represent the numbers (or rates) of prescription dispenisngs in areas within each cluster. 
+The red lines are cluster centers obtained by averaging the patterns of prescription dispensings in member areas, and the gray lines represent the patterns of prescription dispensings in areas within each cluster. 
 
 ## Appendix
 
@@ -288,7 +288,7 @@ par(mfrow=c(3,5))
   }
 ```
 
-The red line represents the average rate of opioid prescription dispensings in each cluster, and the gray lines represent the rates of prescription dispenisngs in counties within each cluster. 
+The red lines are cluster centers obtained by averaging the patterns of prescription dispensing rates in member counties, and the gray lines represent the patterns of prescription dispensing rates in counties within each cluster. 
 
 ### List of counties in each cluster
 ```{r counties, class.output="scroll-300"}
